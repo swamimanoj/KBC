@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FB APP</title>
+<link rel="stylesheet" type="stylesheet/text" href="./home.css"></link>
+</head>
+<body>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '186724231898401',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.10'
+    });
+    FB.AppEvents.logPageView();
+
+    FB.getLoginStatus(function(response){
+       if(response.status==='connected'){
+           document.getElementById('status').innerHtml='We are connected';
+          }
+       else if(response.status==='not_authorised'){
+          document.getElementById('status').innerHtml='We are not connected';
+          }
+        else{
+           document.getElementById('status').innerHtml='You are not logged into facebook';
+          }
+       });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+function login(){
+   FB.login(function(response){
+       if(response.status==='connected'){
+           document.getElementById('status').innerHtml='We are connected';
+          }
+         else if(response.status==='not_authorised'){
+          document.getElementById('status').innerHtml='We are not connected';
+          }
+           else{
+           document.getElementById('status').innerHtml='You are not logged into facebook';
+          }
+   });
+}
+</script>
+
+<div id="status">Status</div>
+<button onclick='login'>Login</button>
+
+<div class="nav">
+<div class="navbar"><a href="c.php">C Language</a></div>
+<div class="navbar"><a href="c++.php">C++ Language</a></div>
+<div class="navbar"><a href="java.php">JAVA</a></div>
+<div class="navbar"><a href="sql.php">SQL</a></div>
+<div class="navbar"><a href="android.php">ANDROID</a></div>
+<div class="navbar"><a href="python.php">PYTHON</a></div>
+</div>
+
+</body>
+</html>
